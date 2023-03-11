@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://du5ow0u3bi81x"]
+[gd_scene load_steps=9 format=3 uid="uid://du5ow0u3bi81x"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_47u60"]
 [ext_resource type="ArrayMesh" uid="uid://dkbfr36f44wq2" path="res://suskoh.obj" id="2_5fdkd"]
@@ -8,31 +8,43 @@
 radius = 0.952376
 height = 2.96167
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ic8r2"]
-albedo_color = Color(0.8, 0, 0, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g785p"]
+albedo_color = Color(0.270588, 0.270588, 0.270588, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p6bg6"]
+albedo_color = Color(0.560784, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_242dh"]
+transparency = 1
+albedo_color = Color(0.560784, 0, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7mson"]
+transparency = 1
+albedo_color = Color(0.560784, 0, 0, 0)
 
 [node name="CharacterBody3D" type="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.79575, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
 script = ExtResource("1_47u60")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.102314, -1.83541, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.835, 0)
 shape = SubResource("CapsuleShape3D_ny3e2")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.274, 0.579556)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.104202, -3.274, 0.536265)
 mesh = ExtResource("2_5fdkd")
-surface_material_override/0 = SubResource("StandardMaterial3D_ic8r2")
+surface_material_override/0 = SubResource("StandardMaterial3D_g785p")
+surface_material_override/1 = SubResource("StandardMaterial3D_p6bg6")
+surface_material_override/4 = SubResource("StandardMaterial3D_242dh")
+surface_material_override/5 = SubResource("StandardMaterial3D_7mson")
 
 [node name="Node3D" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.46612, 0)
 
 [node name="SpringArm" type="SpringArm3D" parent="Node3D"]
-spring_length = 7.0
+spring_length = 4.0
 margin = 0.2
 script = ExtResource("3_aid3c")
 
 [node name="Camera3D" type="Camera3D" parent="Node3D/SpringArm"]
 transform = Transform3D(1, 0, 0, 0, 0.879516, 0.47587, 0, -0.47587, 0.879516, 0, 0, 0)
-fov = 90.0

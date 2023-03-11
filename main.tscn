@@ -39,6 +39,7 @@ size = Vector3(1, 0.659209, 0.721475)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0djqd"]
 albedo_color = Color(0.266667, 1, 0, 1)
+metallic = 1.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5k0no"]
 size = Vector3(8.58417, 3.11344, 14.35)
