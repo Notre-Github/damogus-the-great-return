@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://iku5a1nd4wl1"
+path="res://.godot/imported/Comode.obj-03d695aae3756f1c71c588c01e68b798.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Comode.obj-03d695aae3756f1c71c588c01e68b798.mesh"]
+
+source_file="res://Comode.obj"
+dest_files=["res://.godot/imported/Comode.obj-03d695aae3756f1c71c588c01e68b798.mesh", "res://.godot/imported/Comode.obj-03d695aae3756f1c71c588c01e68b798.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
