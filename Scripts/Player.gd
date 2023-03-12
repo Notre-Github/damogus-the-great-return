@@ -2,9 +2,9 @@ extends CharacterBody3D
 
 const SPEED = 15.0
 const JUMP_VELOCITY = 20
-const JETPACK_VELOCITY = 10
+const JETPACK_VELOCITY = 1.1
 
-var jetpack_fuel = 7
+var jetpack_fuel = 7.27
 var jetpack_enable = false
 
 @onready var _spring_arm: SpringArm3D = $Node3D/SpringArm
@@ -12,8 +12,6 @@ var jetpack_enable = false
 
 @onready var _fireParticles: GPUParticles3D = $MeshInstance3D/GPUParticles3D
 @onready var _uiFuelBar: ProgressBar = $UI/MarginContainer/ProgressBar
-
-@onready var _rc: RayCast3D = $RayCast3D
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -27,7 +25,7 @@ func _physics_process(delta):
 		velocity.y -= gravity * delta
 	
 	if is_on_floor():
-		jetpack_fuel = 7
+		jetpack_fuel = 7.27
 		jetpack_enable = false
 
 	if Input.is_action_just_pressed("jump") and is_on_floor():
@@ -36,7 +34,7 @@ func _physics_process(delta):
 		jetpack_enable = true
 
 	if Input.is_action_pressed("jump") and jetpack_enable and jetpack_fuel > 0:
-		velocity.y = JETPACK_VELOCITY
+		velocity.y += JETPACK_VELOCITY
 		jetpack_fuel -= 0.1
 		_fireParticles.emitting = true
 
@@ -56,9 +54,9 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
-	move_and_slide()
 
 func _process(delta):
+	move_and_slide()
 	_spring_arm.position = Vector3(position.x, position.y + 4, position.z)
 	if velocity.x != 0 or velocity.z != 0 :
 		_mesh.rotation.y = lerp_angle(_mesh.rotation.y, atan2(-velocity.x, -velocity.z), 13 * delta)

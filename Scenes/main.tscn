@@ -1,9 +1,9 @@
 [gd_scene load_steps=19 format=3 uid="uid://cnng0rv0punab"]
 
 [ext_resource type="PackedScene" uid="uid://bvqd1l4jpnjhi" path="res://Scenes/Player.tscn" id="1_cgk4e"]
-[ext_resource type="ArrayMesh" uid="uid://iku5a1nd4wl1" path="res://Models/Comode.obj" id="2_5fn4n"]
+[ext_resource type="ArrayMesh" uid="uid://iku5a1nd4wl1" path="res://Models/Materials/Comode.obj" id="2_5fn4n"]
 [ext_resource type="Material" uid="uid://hdybqwmextni" path="res://Models/Materials/maron.tres" id="3_8pvix"]
-[ext_resource type="ArrayMesh" uid="uid://dtgg4a5brtio7" path="res://Models/Lit de Sus.obj" id="3_fkfee"]
+[ext_resource type="ArrayMesh" uid="uid://dtgg4a5brtio7" path="res://Models/Materials/Lit de Sus.obj" id="3_fkfee"]
 
 [sub_resource type="Gradient" id="Gradient_6ng2r"]
 offsets = PackedFloat32Array(0.473684, 0.706767, 0.955801)

@@ -323,7 +323,7 @@ grow_vertical = 2
 
 [node name="OptionMenu" type="PanelContainer" parent="OptionCenterContainer"]
 visible = false
-custom_minimum_size = Vector2(512, 256)
+custom_minimum_size = Vector2(512, 354)
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="OptionCenterContainer/OptionMenu"]
@@ -352,14 +352,70 @@ size_flags_stretch_ratio = 0.0
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Fullscreen" type="CheckBox" parent="OptionCenterContainer/OptionMenu/MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "  Fullscreen"
-
 [node name="Resolution" type="OptionButton" parent="OptionCenterContainer/OptionMenu/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 4
+item_count = 3
+selected = 2
+popup/item_0/text = "Fullscreen"
+popup/item_0/id = 0
+popup/item_1/text = "Borderless"
+popup/item_1/id = 1
+popup/item_2/text = "Windowed"
+popup/item_2/id = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="OptionCenterContainer/OptionMenu/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="OptionCenterContainer/OptionMenu/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="OptionCenterContainer/OptionMenu/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "Mouse Sensitivity : "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sens" type="Label" parent="OptionCenterContainer/OptionMenu/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="OptionCenterContainer/OptionMenu/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+min_value = 0.05
+max_value = 0.5
+step = 0.01
+value = 0.15
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="OptionCenterContainer/OptionMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="OptionCenterContainer/OptionMenu/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="OptionCenterContainer/OptionMenu/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "FOV"
+
+[node name="HSlider" type="HSlider" parent="OptionCenterContainer/OptionMenu/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+min_value = 1.0
+max_value = 179.0
+value = 75.0
 
 [node name="BackButton" type="Button" parent="OptionCenterContainer/OptionMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -429,4 +485,6 @@ libraries = {
 "": SubResource("AnimationLibrary_br1im")
 }
 
-[connection signal="toggled" from="OptionCenterContainer/OptionMenu/MarginContainer/VBoxContainer/HBoxContainer/Fullscreen" to="." method="_on_fullscreen_toggled"]
+[connection signal="item_selected" from="OptionCenterContainer/OptionMenu/MarginContainer/VBoxContainer/HBoxContainer/Resolution" to="." method="_on_resolution_item_selected"]
+[connection signal="value_changed" from="OptionCenterContainer/OptionMenu/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="value_changed" from="OptionCenterContainer/OptionMenu/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HSlider" to="." method="_on_fov_slider_value_changed"]

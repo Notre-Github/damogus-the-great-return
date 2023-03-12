@@ -4,14 +4,14 @@ importer="wavefront_obj"
 importer_version=1
 type="Mesh"
 uid="uid://dtgg4a5brtio7"
-path="res://.godot/imported/Lit de Sus.obj-ac61bc741b10c5175199e01b201de009.mesh"
+path="res://.godot/imported/Lit de Sus.obj-23588ddcefa87fe75d4605dbfa39cbaa.mesh"
 
 [deps]
 
-files=["res://.godot/imported/Lit de Sus.obj-ac61bc741b10c5175199e01b201de009.mesh"]
+files=["res://.godot/imported/Lit de Sus.obj-23588ddcefa87fe75d4605dbfa39cbaa.mesh"]
 
-source_file="res://Models/Lit de Sus.obj"
-dest_files=["res://.godot/imported/Lit de Sus.obj-ac61bc741b10c5175199e01b201de009.mesh", "res://.godot/imported/Lit de Sus.obj-ac61bc741b10c5175199e01b201de009.mesh"]
+source_file="res://Models/Materials/Lit de Sus.obj"
+dest_files=["res://.godot/imported/Lit de Sus.obj-23588ddcefa87fe75d4605dbfa39cbaa.mesh", "res://.godot/imported/Lit de Sus.obj-23588ddcefa87fe75d4605dbfa39cbaa.mesh"]
 
 [params]
 
