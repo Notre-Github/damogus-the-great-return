@@ -16,7 +16,7 @@ signal mouse_sens(sens)
 signal fov(value)
 
 func _ready():
-	playButton.pressed.connect(unpause)
+	playButton.pressed.connect(unpause) # on assigne aux boutons une fonction qui se lancera quand on clique dessus
 	optionButton.pressed.connect(optionOpen)
 	backButton.pressed.connect(optionClose)
 	quitButton.pressed.connect(get_tree().quit)
@@ -25,7 +25,7 @@ func _ready():
 func unpause():
 	animator.play("Unpause")
 	get_tree().paused = false
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED) # pour récupérer la souris
 
 func optionClose():
 	animator.play("closeOptions")
@@ -36,7 +36,7 @@ func optionOpen():
 func pause():
 	animator.play("Pause")
 	get_tree().paused = true
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE) # pour rendre la souris
 
 func _on_resolution_item_selected(index):
 	if index == 0:
@@ -46,9 +46,9 @@ func _on_resolution_item_selected(index):
 	elif index == 2:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 
-func _on_h_slider_value_changed(value):
+func _on_h_slider_value_changed(value): # pour changer la sensi
 	textSens.text = str(value)
 	mouse_sens.emit(value)
 
-func _on_fov_slider_value_changed(value):
+func _on_fov_slider_value_changed(value): # pour changer le fov
 	fov.emit(value)

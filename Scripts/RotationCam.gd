@@ -8,20 +8,18 @@ extends SpringArm3D
 
 func _ready():
 	set_as_top_level(true)
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED) # on prends la souris
 
 func _unhandled_input(event):
-	if event is InputEventMouseMotion:
-		rotation_degrees.x -= event.relative.y * mouse_sensitivity
-		rotation_degrees.x = clamp(rotation_degrees.x, -75, 50)
+	if event is InputEventMouseMotion: # si un input se produit, et que c'est un mouvement de souris
+		rotation_degrees.x -= event.relative.y * mouse_sensitivity # on bouge la cam suivant la sensi
+		rotation_degrees.x = clamp(rotation_degrees.x, -75, 50) # on limite le mouvement
 
-		rotation_degrees.y -= event.relative.x * mouse_sensitivity
-		rotation_degrees.y = wrapf(rotation_degrees.y, 0.0, 360.0)
-
-		#_mesh.rotation_degrees.y = rotation_degrees.y
+		rotation_degrees.y -= event.relative.x * mouse_sensitivity # on bouge la cam suivant la sensi
+		rotation_degrees.y = wrapf(rotation_degrees.y, 0.0, 360.0) # on limite le mouvement
 
 func _process(_delta):
-	var input_dir = Input.get_vector("look_left", "look_right", "look_up", "look_down")
+	var input_dir = Input.get_vector("look_left", "look_right", "look_up", "look_down") # pareil, mais avec la manette
 	rotation_degrees.x -= input_dir.y * controller_sensitivity
 	rotation_degrees.x = clamp(rotation_degrees.x, -75, 50)
 

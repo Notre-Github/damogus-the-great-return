@@ -413,8 +413,8 @@ text = "FOV"
 [node name="HSlider" type="HSlider" parent="OptionCenterContainer/OptionMenu/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 2
-min_value = 1.0
-max_value = 179.0
+min_value = 30.0
+max_value = 125.0
 value = 75.0
 
 [node name="BackButton" type="Button" parent="OptionCenterContainer/OptionMenu/MarginContainer/VBoxContainer"]

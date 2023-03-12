@@ -84,7 +84,6 @@ script = ExtResource("3_aid3c")
 
 [node name="Camera3D" type="Camera3D" parent="Node3D/SpringArm"]
 transform = Transform3D(1, 0, 0, 0, 0.906308, 0.422618, 0, -0.422618, 0.906308, 0, 0, 0)
-fov = 1.0
 
 [node name="PauseMenu" parent="." instance=ExtResource("4_edruu")]
 
@@ -107,9 +106,9 @@ theme_override_constants/margin_bottom = 15
 
 [node name="ProgressBar" type="ProgressBar" parent="UI/MarginContainer"]
 layout_mode = 2
-max_value = 7.27
+max_value = 7.0
 step = 0.1
-value = 7.27
+value = 7.0
 fill_mode = 1
 
 [connection signal="fov" from="PauseMenu" to="Node3D/SpringArm" method="_on_pause_menu_fov"]
