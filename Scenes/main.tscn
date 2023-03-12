@@ -1,15 +1,49 @@
-[gd_scene load_steps=13 format=3 uid="uid://cnng0rv0punab"]
+[gd_scene load_steps=19 format=3 uid="uid://cnng0rv0punab"]
 
 [ext_resource type="PackedScene" uid="uid://bvqd1l4jpnjhi" path="res://Scenes/Player.tscn" id="1_cgk4e"]
 [ext_resource type="ArrayMesh" uid="uid://iku5a1nd4wl1" path="res://Models/Comode.obj" id="2_5fn4n"]
 [ext_resource type="Material" uid="uid://hdybqwmextni" path="res://Models/Materials/maron.tres" id="3_8pvix"]
 [ext_resource type="ArrayMesh" uid="uid://dtgg4a5brtio7" path="res://Models/Lit de Sus.obj" id="3_fkfee"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_kwvoy"]
-size = Vector3(60, 2, 60)
+[sub_resource type="Gradient" id="Gradient_6ng2r"]
+offsets = PackedFloat32Array(0.473684, 0.706767, 0.955801)
+colors = PackedColorArray(0, 0, 0, 1, 0.413534, 0.413534, 0.413534, 1, 1, 1, 1, 1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_8xgi0"]
-size = Vector3(60, 2, 60)
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_r55u5"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_wc62a"]
+width = 1024
+height = 1024
+seamless = true
+seamless_blend_skirt = 0.333
+bump_strength = 32.0
+color_ramp = SubResource("Gradient_6ng2r")
+noise = SubResource("FastNoiseLite_r55u5")
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_anda7"]
+sky_top_color = Color(0.54902, 0.729412, 0.980392, 1)
+sky_horizon_color = Color(0.768627, 0.94902, 1, 1)
+sky_curve = 0.105112
+sky_cover = SubResource("NoiseTexture2D_wc62a")
+ground_bottom_color = Color(0.290196, 0.290196, 0.290196, 1)
+ground_horizon_color = Color(0.258824, 0.262745, 0.270588, 1)
+
+[sub_resource type="Sky" id="Sky_4eb7t"]
+sky_material = SubResource("ProceduralSkyMaterial_anda7")
+
+[sub_resource type="Environment" id="Environment_0va2h"]
+background_mode = 2
+sky = SubResource("Sky_4eb7t")
+fog_light_color = Color(0.486275, 0.521569, 0.576471, 1)
+fog_light_energy = 0.0
+fog_density = 0.0706
+fog_sky_affect = 0.992
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h5tr4"]
+size = Vector3(69, 0, 69)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_51q8f"]
+size = Vector2(69, 69)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7cydo"]
 albedo_color = Color(0.129412, 0.129412, 0.129412, 1)
@@ -32,6 +66,9 @@ size = Vector3(8.58417, 3.11344, 14.35)
 [node name="Main" type="Node"]
 process_mode = 3
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_0va2h")
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.409095, 0.912492, 0, -0.912492, 0.409095, 0, 14.8447, 0)
 light_color = Color(0.929412, 1, 1, 1)
@@ -39,21 +76,20 @@ light_energy = 1.485
 shadow_enabled = true
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-shape = SubResource("BoxShape3D_kwvoy")
+shape = SubResource("BoxShape3D_h5tr4")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0512466, 0.0499449, -0.00756931)
-mesh = SubResource("BoxMesh_8xgi0")
+mesh = SubResource("PlaneMesh_51q8f")
 skeleton = NodePath("../CollisionShape3D")
 surface_material_override/0 = SubResource("StandardMaterial3D_7cydo")
 
-[node name="CharacterBody3D" parent="." instance=ExtResource("1_cgk4e")]
+[node name="Player" parent="." instance=ExtResource("1_cgk4e")]
+collision_layer = 2
 
 [node name="RigidBody3D" type="RigidBody3D" parent="."]
-transform = Transform3D(0.979938, 0, 1.10777, 0, 1.479, 0, -1.10777, 0, 0.979938, 0, 9.82172, -10.7572)
+transform = Transform3D(0.979938, 0, 1.10777, 0, 1.479, 0, -1.10777, 0, 0.979938, 0, 5.39555, -10.7572)
 physics_material_override = SubResource("PhysicsMaterial_6670c")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]

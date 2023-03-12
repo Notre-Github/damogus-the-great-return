@@ -1,32 +1,43 @@
-[gd_scene load_steps=11 format=3 uid="uid://bvqd1l4jpnjhi"]
+[gd_scene load_steps=12 format=3 uid="uid://bvqd1l4jpnjhi"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_47u60"]
-[ext_resource type="ArrayMesh" uid="uid://dkbfr36f44wq2" path="res://Models/suskoh.obj" id="2_b652m"]
+[ext_resource type="ArrayMesh" uid="uid://clpj4ni5jqtrn" path="res://Models/Damogus.obj" id="2_w8xdt"]
 [ext_resource type="Script" path="res://Scripts/RotationCam.gd" id="3_aid3c"]
-[ext_resource type="PackedScene" path="res://Scenes/pause_menu.tscn" id="4_edruu"]
+[ext_resource type="PackedScene" uid="uid://ciodesusejlxu" path="res://Scenes/pause_menu.tscn" id="4_edruu"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ny3e2"]
 radius = 0.952376
 height = 2.96167
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hcf8y"]
-albedo_color = Color(0.4, 0.4, 0.4, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gjcjd"]
+albedo_color = Color(0.74902, 0.164706, 0.164706, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_010wl"]
-albedo_color = Color(0.721569, 0.137255, 0.137255, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m083b"]
+albedo_color = Color(0.74902, 0.164706, 0.164706, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wbu73"]
-albedo_color = Color(0.4, 0.4, 0.4, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g8ws4"]
+albedo_color = Color(0.6, 0.741176, 1, 1)
+metallic = 0.59
+metallic_specular = 0.0
+roughness = 0.05
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tfm3e"]
-transparency = 1
-albedo_color = Color(0.721569, 0.137255, 0.137255, 0)
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_u58qx"]
+emission_shape = 1
+emission_sphere_radius = 2.05
+spread = 84.98
+gravity = Vector3(0, -20, 0)
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.3
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1t7sj"]
-transparency = 1
-albedo_color = Color(0.721569, 0.137255, 0.137255, 0)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yhn10"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ha2vl"]
+material = SubResource("StandardMaterial3D_yhn10")
+size = Vector3(0.25, 0.25, 0.25)
 
 [node name="CharacterBody3D" type="CharacterBody3D"]
+process_mode = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
 script = ExtResource("1_47u60")
 
@@ -36,13 +47,11 @@ shape = SubResource("CapsuleShape3D_ny3e2")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.104202, -3.274, 0.536265)
-mesh = ExtResource("2_b652m")
-surface_material_override/0 = SubResource("StandardMaterial3D_hcf8y")
-surface_material_override/1 = SubResource("StandardMaterial3D_010wl")
-surface_material_override/2 = SubResource("StandardMaterial3D_wbu73")
-surface_material_override/4 = SubResource("StandardMaterial3D_tfm3e")
-surface_material_override/5 = SubResource("StandardMaterial3D_1t7sj")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.93381, 0.463945)
+mesh = ExtResource("2_w8xdt")
+surface_material_override/0 = SubResource("StandardMaterial3D_gjcjd")
+surface_material_override/1 = SubResource("StandardMaterial3D_m083b")
+surface_material_override/2 = SubResource("StandardMaterial3D_g8ws4")
 
 [node name="Node3D" type="Node3D" parent="."]
 
@@ -55,3 +64,41 @@ script = ExtResource("3_aid3c")
 transform = Transform3D(1, 0, 0, 0, 0.906308, 0.422618, 0, -0.422618, 0.906308, 0, 0, 0)
 
 [node name="PauseMenu" parent="." instance=ExtResource("4_edruu")]
+
+[node name="UI" type="CenterContainer" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -42.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="UI"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="ProgressBar" type="ProgressBar" parent="UI/MarginContainer"]
+layout_mode = 2
+max_value = 7.0
+step = 0.1
+value = 7.0
+fill_mode = 1
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.9275, 0)
+emitting = false
+amount = 100
+lifetime = 0.02
+one_shot = true
+visibility_aabb = AABB(-4, -3.77588, -4, 8, 8, 8)
+process_material = SubResource("ParticleProcessMaterial_u58qx")
+draw_passes = 4
+draw_pass_1 = SubResource("BoxMesh_ha2vl")
+draw_pass_2 = null
+draw_pass_3 = null
+draw_pass_4 = null

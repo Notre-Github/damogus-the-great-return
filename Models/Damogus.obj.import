@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://clpj4ni5jqtrn"
+path="res://.godot/imported/Damogus.obj-4c5ec13ae8796c26e3b1d0a676ea5379.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Damogus.obj-4c5ec13ae8796c26e3b1d0a676ea5379.mesh"]
+
+source_file="res://Models/Damogus.obj"
+dest_files=["res://.godot/imported/Damogus.obj-4c5ec13ae8796c26e3b1d0a676ea5379.mesh", "res://.godot/imported/Damogus.obj-4c5ec13ae8796c26e3b1d0a676ea5379.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

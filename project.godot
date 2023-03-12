@@ -72,6 +72,19 @@ look_down={
 ]
 }
 
+[layer_names]
+
+3d_physics/layer_1="Decor"
+3d_physics/layer_2="Player"
+3d_physics/layer_3="PNJs"
+
 [physics]
 
 3d/default_gravity=50.0
+
+[rendering]
+
+driver/threads/thread_model=2
+anti_aliasing/quality/msaa_3d=2
+anti_aliasing/quality/use_taa=true
+mesh_lod/lod_change/threshold_pixels=0.0
