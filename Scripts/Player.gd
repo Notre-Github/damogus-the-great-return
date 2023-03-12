@@ -8,6 +8,10 @@ const JUMP_VELOCITY = 20
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
+func _unhandled_input(event: InputEvent):
+	if event.is_action_pressed('ui_cancel'):
+		$PauseMenu.pause()
+
 func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y -= gravity * delta
@@ -32,7 +36,7 @@ func _physics_process(delta):
 	move_and_slide()
 
 func _process(delta):
-	_spring_arm.position = Vector3(position.x, position.y + 1, position.z)
+	_spring_arm.position = Vector3(position.x, position.y + 2, position.z)
 	if velocity != Vector3.ZERO:
-		_mesh.rotation.y = lerp_angle(_mesh.rotation.y, atan2(-velocity.x, -velocity.z), 10 * delta)
+		_mesh.rotation.y = lerp_angle(_mesh.rotation.y, atan2(-velocity.x, -velocity.z), 20 * delta)
 		_mesh.rotation.y
