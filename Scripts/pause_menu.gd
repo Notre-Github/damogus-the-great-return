@@ -6,7 +6,6 @@ extends ColorRect
 @onready var optionButton: Button = $CenterContainer/PauseMenu/MarginContainer/VBoxContainer/OptionButton
 @onready var quitButton: Button = $CenterContainer/PauseMenu/MarginContainer/VBoxContainer/QuitButton
 
-@onready var fullscreen: Button = $OptionCenterContainer/OptionMenu/MarginContainer/VBoxContainer/HBoxContainer/Fullscreen
 @onready var backButton: Button = $OptionCenterContainer/OptionMenu/MarginContainer/VBoxContainer/BackButton
 
 @onready var textSens: Label = $OptionCenterContainer/OptionMenu/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/Sens
@@ -20,6 +19,7 @@ func _ready():
 	optionButton.pressed.connect(optionOpen)
 	backButton.pressed.connect(optionClose)
 	quitButton.pressed.connect(get_tree().quit)
+	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 
 
 func unpause():

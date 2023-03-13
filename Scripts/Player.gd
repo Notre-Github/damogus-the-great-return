@@ -1,8 +1,12 @@
 extends CharacterBody3D
 
-const SPEED = 15.0
+const SPEED = 12
 const JUMP_VELOCITY = 20
 const JETPACK_VELOCITY = 1.1
+const ROLL_SPEED = 14
+var roll_time = 0.66
+var rolling = true
+var roll_direction = 0
 
 var jetpack_fuel = 7
 var jetpack_enable = false
@@ -27,6 +31,10 @@ func _physics_process(delta):
 	if is_on_floor(): # reset du jetpack
 		jetpack_fuel = 7
 		jetpack_enable = false
+	
+
+	var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_back") #vecteur à partir des controles
+	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y))
 
 	if Input.is_action_just_pressed("jump") and is_on_floor(): # gestion du saut
 		velocity.y = JUMP_VELOCITY
@@ -40,18 +48,30 @@ func _physics_process(delta):
 
 	_uiFuelBar.value = jetpack_fuel # pour l'UI
 
-	var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_back") #vecteur à partir des controles
-	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y))
-
 	direction = direction.rotated(Vector3.UP, _spring_arm.rotation.y) # on rotate suivant l'angle de la camera
 
-	if direction:
+	if direction and !rolling:
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
-
+	
+	if Input.is_action_just_pressed("roll") and !rolling and is_on_floor(): #déclencheur de la roulade
+		if direction: # gestion de l'angle de la roulade selon l'angle de la cam
+			roll_direction = _spring_arm.rotation.y
+		else: # si pas de direction du stick, on prends l'angle du personnage
+			roll_direction = _mesh.rotation.y
+		rolling = true
+		
+	if rolling: # la roulade
+		roll_time -= delta
+		_mesh.rotation.x = roll_time * (1/0.25) # pour faire spin le perso, c'est pepega
+		velocity = Vector3(velocity.x, velocity.y, -ROLL_SPEED).rotated(Vector3.UP, roll_direction) # on donne de la vitesse dans la direction de la 1ere frame de la roulade
+		if roll_time < 0:
+			rolling = false
+			roll_time = 1
+			_mesh.rotation.x = 0
 
 func _process(delta):
 	move_and_slide() # deprecated : pour le jitter (non kakoh on est pas en pvp pot)
