@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://dsq5j3i0m4dfk"]
+[gd_scene load_steps=17 format=3 uid="uid://dsq5j3i0m4dfk"]
 
 [ext_resource type="PackedScene" uid="uid://bvqd1l4jpnjhi" path="res://Scenes/Player.tscn" id="1_cgk4e"]
 [ext_resource type="ArrayMesh" uid="uid://iku5a1nd4wl1" path="res://Models/Decorations/Comode.obj" id="2_nwttt"]
 [ext_resource type="ArrayMesh" uid="uid://dtgg4a5brtio7" path="res://Models/Decorations/Lit de Sus.obj" id="2_r5ntx"]
+[ext_resource type="AudioStream" uid="uid://2s02ul5dppai" path="res://Sounds/Musics/test_song.mp3" id="4_pixv1"]
 
 [sub_resource type="Gradient" id="Gradient_6ng2r"]
 offsets = PackedFloat32Array(0.473684, 0.706767, 0.955801)
@@ -103,3 +104,9 @@ mesh = ExtResource("2_r5ntx")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D2"]
 transform = Transform3D(1, 0, 5.96046e-08, 0, 1, 0, -5.96046e-08, 0, 1, 3.19481, 0.385798, -6.12113)
 shape = SubResource("BoxShape3D_5k0no")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_pixv1")
+volume_db = -23.833
+autoplay = true
+mix_target = 1
