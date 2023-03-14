@@ -1,39 +1,108 @@
-[gd_scene load_steps=17 format=3 uid="uid://dsq5j3i0m4dfk"]
+[gd_scene load_steps=30 format=3 uid="uid://dsq5j3i0m4dfk"]
 
 [ext_resource type="PackedScene" uid="uid://bvqd1l4jpnjhi" path="res://Scenes/Player.tscn" id="1_cgk4e"]
+[ext_resource type="Shader" path="res://Scripts/Shaders/sky.gdshader" id="1_ec7k2"]
 [ext_resource type="ArrayMesh" uid="uid://iku5a1nd4wl1" path="res://Models/Decorations/Comode.obj" id="2_nwttt"]
 [ext_resource type="ArrayMesh" uid="uid://dtgg4a5brtio7" path="res://Models/Decorations/Lit de Sus.obj" id="2_r5ntx"]
+[ext_resource type="Script" path="res://Scenes/TimeController.gd" id="2_u6pw3"]
 [ext_resource type="AudioStream" uid="uid://2s02ul5dppai" path="res://Sounds/Musics/test_song.mp3" id="4_pixv1"]
 
-[sub_resource type="Gradient" id="Gradient_6ng2r"]
-offsets = PackedFloat32Array(0.473684, 0.706767, 0.955801)
-colors = PackedColorArray(0, 0, 0, 1, 0.413534, 0.413534, 0.413534, 1, 1, 1, 1, 1)
+[sub_resource type="Gradient" id="Gradient_qiw63"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_r55u5"]
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_e4phb"]
+gradient = SubResource("Gradient_qiw63")
+width = 4
+height = 4
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_wc62a"]
-width = 1024
-height = 1024
+[sub_resource type="Gradient" id="Gradient_6kf60"]
+colors = PackedColorArray(0, 0, 0, 1, 1, 0, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_t1t7n"]
+seed = 4
+frequency = 0.001
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_15vll"]
 seamless = true
-seamless_blend_skirt = 0.333
-bump_strength = 32.0
-color_ramp = SubResource("Gradient_6ng2r")
-noise = SubResource("FastNoiseLite_r55u5")
+seamless_blend_skirt = 1.0
+color_ramp = SubResource("Gradient_6kf60")
+noise = SubResource("FastNoiseLite_t1t7n")
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_anda7"]
-sky_top_color = Color(0.54902, 0.729412, 0.980392, 1)
-sky_horizon_color = Color(0.768627, 0.94902, 1, 1)
-sky_curve = 0.105112
-sky_cover = SubResource("NoiseTexture2D_wc62a")
-ground_bottom_color = Color(0.290196, 0.290196, 0.290196, 1)
-ground_horizon_color = Color(0.258824, 0.262745, 0.270588, 1)
+[sub_resource type="Gradient" id="Gradient_5a58d"]
+offsets = PackedFloat32Array(0.218391, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_bc1h1"]
+frequency = 0.029
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jg7cp"]
+seamless = true
+color_ramp = SubResource("Gradient_5a58d")
+noise = SubResource("FastNoiseLite_bc1h1")
+
+[sub_resource type="Gradient" id="Gradient_1bk3x"]
+colors = PackedColorArray(0.392157, 0.392157, 0.392157, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_fbhxv"]
+noise_type = 3
+frequency = 0.02
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_eyi65"]
+seamless = true
+color_ramp = SubResource("Gradient_1bk3x")
+noise = SubResource("FastNoiseLite_fbhxv")
+
+[sub_resource type="Gradient" id="Gradient_5yigx"]
+offsets = PackedFloat32Array(0, 0.95977, 0.977012)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_caq7q"]
+noise_type = 2
+frequency = 0.934
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_yougn"]
+seamless = true
+color_ramp = SubResource("Gradient_5yigx")
+noise = SubResource("FastNoiseLite_caq7q")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4x134"]
+shader = ExtResource("1_ec7k2")
+shader_parameter/day_bottom_color = Color(0.541176, 0.690196, 1, 1)
+shader_parameter/day_top_color = Color(0.301961, 0.917647, 1, 1)
+shader_parameter/sunset_bottom_color = Color(0.45098, 0.180392, 0, 1)
+shader_parameter/sunset_top_color = Color(0.105882, 0.105882, 0.176471, 1)
+shader_parameter/night_bottom_color = Color(0, 0, 0, 1)
+shader_parameter/night_top_color = Color(0, 0, 0, 1)
+shader_parameter/horizon_color_day = Color(0.0352941, 0.701961, 0, 1)
+shader_parameter/horizon_color_sunset = Color(1, 0.321569, 0.321569, 1)
+shader_parameter/horizon_color_night = Color(0.172549, 0.160784, 0.34902, 1)
+shader_parameter/horizon_falloff = 0.9
+shader_parameter/sun_col = Color(1, 1, 1, 1)
+shader_parameter/sun_size = 0.15
+shader_parameter/sun_blur = 0.149
+shader_parameter/moon_col = Color(1, 1, 1, 1)
+shader_parameter/moon_size = 0.15
+shader_parameter/moon_crescent_offset = -0.097
+shader_parameter/clouds_main_color = Color(1, 1, 1, 1)
+shader_parameter/clouds_edge_color = Color(0, 0.623529, 1, 1)
+shader_parameter/clouds_speed = 0.07
+shader_parameter/clouds_scale = 0.15
+shader_parameter/clouds_cutoff = 0.03
+shader_parameter/clouds_fuzziness = 0.56
+shader_parameter/stars_speed = 0.019
+shader_parameter/clouds_texture = SubResource("NoiseTexture2D_eyi65")
+shader_parameter/clouds_distort_texture = SubResource("NoiseTexture2D_15vll")
+shader_parameter/clouds_noise_texture = SubResource("NoiseTexture2D_jg7cp")
+shader_parameter/stars_texture = SubResource("NoiseTexture2D_yougn")
 
 [sub_resource type="Sky" id="Sky_4eb7t"]
-sky_material = SubResource("ProceduralSkyMaterial_anda7")
+sky_material = SubResource("ShaderMaterial_4x134")
 
 [sub_resource type="Environment" id="Environment_0va2h"]
 background_mode = 2
 sky = SubResource("Sky_4eb7t")
+sdfgi_use_occlusion = true
+sdfgi_y_scale = 2
+sdfgi_energy = 10.0
 fog_light_color = Color(0.486275, 0.521569, 0.576471, 1)
 fog_light_energy = 0.0
 fog_density = 0.0706
@@ -42,7 +111,7 @@ fog_sky_affect = 0.992
 [sub_resource type="BoxShape3D" id="BoxShape3D_h5tr4"]
 size = Vector3(100, 2, 100)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_51q8f"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_36xfx"]
 size = Vector2(100, 100)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7cydo"]
@@ -55,58 +124,69 @@ bounce = 1.0
 size = Vector3(1.07222, 2.14136, 3.7161)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5k0no"]
-size = Vector3(8.58417, 3.11344, 14.35)
+size = Vector3(8.39948, 2.98276, 13.8148)
 
 [node name="Main" type="Node"]
 process_mode = 3
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="CenterCursor" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Cursor" type="TextureRect" parent="CenterCursor"]
+layout_mode = 2
+texture = SubResource("GradientTexture2D_e4phb")
+
+[node name="Light" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.99051, -0.137444, 0, 0.137444, -0.99051, 0, 14.8447, 0)
+light_color = Color(0.929412, 1, 1, 1)
+light_energy = 1.121
+shadow_enabled = true
+script = ExtResource("2_u6pw3")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Light"]
 environment = SubResource("Environment_0va2h")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.409095, 0.912492, 0, -0.912492, 0.409095, 0, 14.8447, 0)
-light_color = Color(0.929412, 1, 1, 1)
-light_energy = 1.485
-shadow_enabled = true
+[node name="Ground" type="StaticBody3D" parent="."]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="GroundCollision" type="CollisionShape3D" parent="Ground"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 shape = SubResource("BoxShape3D_h5tr4")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
-mesh = SubResource("PlaneMesh_51q8f")
-skeleton = NodePath("../CollisionShape3D")
+[node name="GroundMesh" type="MeshInstance3D" parent="Ground"]
+mesh = SubResource("PlaneMesh_36xfx")
+skeleton = NodePath("../GroundCollision")
 surface_material_override/0 = SubResource("StandardMaterial3D_7cydo")
 
 [node name="Player" parent="." instance=ExtResource("1_cgk4e")]
 collision_layer = 2
 
-[node name="RigidBody3D" type="RigidBody3D" parent="."]
+[node name="ComodeDuKoh" type="RigidBody3D" parent="."]
 transform = Transform3D(0.979938, 0, 1.10777, 0, 1.479, 0, -1.10777, 0, 0.979938, -10.4469, 5.39555, -22.7199)
 physics_material_override = SubResource("PhysicsMaterial_6670c")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
+[node name="ComodeMesh" type="MeshInstance3D" parent="ComodeDuKoh"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.14648, 0)
 mesh = ExtResource("2_nwttt")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+[node name="ComodeCollision" type="CollisionShape3D" parent="ComodeDuKoh"]
 shape = SubResource("BoxShape3D_rfadf")
 
-[node name="RigidBody3D2" type="RigidBody3D" parent="."]
-transform = Transform3D(-0.214081, 0, 0.279419, 0, 0.352002, 0, -0.279419, 0, -0.214081, -22.545, 1.67422, 18.5213)
+[node name="LitDeSus" type="RigidBody3D" parent="."]
+transform = Transform3D(-0.214081, 0, 0.279419, 0, 0.352002, 0, -0.279419, 0, -0.214081, -22.545, 0.389167, 18.5213)
+mass = 0.01
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D2"]
+[node name="LitDeSusMesh" type="MeshInstance3D" parent="LitDeSus"]
 transform = Transform3D(1, 0, 5.96046e-08, 0, 1, 0, -5.96046e-08, 0, 1, -0.0971832, -1.12874, -0.116045)
 mesh = ExtResource("2_r5ntx")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D2"]
-transform = Transform3D(1, 0, 5.96046e-08, 0, 1, 0, -5.96046e-08, 0, 1, 3.19481, 0.385798, -6.12113)
+[node name="LitDeSusCollision" type="CollisionShape3D" parent="LitDeSus"]
+transform = Transform3D(1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, 3.13891, 0.385798, -6.02496)
 shape = SubResource("BoxShape3D_5k0no")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_pixv1")
 volume_db = -23.833
-autoplay = true
-mix_target = 1

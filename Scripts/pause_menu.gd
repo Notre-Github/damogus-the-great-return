@@ -2,13 +2,13 @@ extends ColorRect
 
 @onready var animator: AnimationPlayer = $AnimationPlayer
 
-@onready var playButton: Button = $CenterContainer/PauseMenu/MarginContainer/VBoxContainer/ResumeButton
-@onready var optionButton: Button = $CenterContainer/PauseMenu/MarginContainer/VBoxContainer/OptionButton
-@onready var quitButton: Button = $CenterContainer/PauseMenu/MarginContainer/VBoxContainer/QuitButton
+@onready var playButton: Button = $CenterContainer/PauseMenu/PauseMargin/Menu/ResumeButton
+@onready var optionButton: Button = $CenterContainer/PauseMenu/PauseMargin/Menu/OptionButton
+@onready var quitButton: Button = $CenterContainer/PauseMenu/PauseMargin/Menu/QuitButton
 
-@onready var backButton: Button = $OptionCenterContainer/OptionMenu/MarginContainer/VBoxContainer/BackButton
+@onready var backButton: Button = $OptionCenterContainer/OptionMenu/Margin/menu/BackButton
 
-@onready var textSens: Label = $OptionCenterContainer/OptionMenu/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/Sens
+@onready var textSens: Label = $"OptionCenterContainer/OptionMenu/Margin/menu/Options Part1/MouseSens/Text/Value"
 
 signal mouse_sens(sens)
 
@@ -52,3 +52,7 @@ func _on_h_slider_value_changed(value): # pour changer la sensi
 
 func _on_fov_slider_value_changed(value): # pour changer le fov
 	fov.emit(value)
+
+
+func _on_vsync_box_toggled(button_pressed):
+	pass

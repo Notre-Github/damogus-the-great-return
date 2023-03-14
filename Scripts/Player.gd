@@ -11,11 +11,11 @@ var roll_direction = 0
 var jetpack_fuel = 7
 var jetpack_enable = false
 
-@onready var _spring_arm: SpringArm3D = $Node3D/SpringArm
-@onready var _mesh: MeshInstance3D = $%MeshInstance3D
+@onready var _spring_arm: SpringArm3D = $CameraNode/SpringArm
+@onready var _mesh: MeshInstance3D = $%PlayerMesh
 
-@onready var _fireParticles: GPUParticles3D = $MeshInstance3D/GPUParticles3D
-@onready var _uiFuelBar: ProgressBar = $UI/MarginContainer/ProgressBar
+@onready var _fireParticles: GPUParticles3D = $PlayerMesh/FireParticles
+@onready var _uiFuelBar: ProgressBar = $Control/PlayerUI/FuelMargin/FuelProgressBar
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -63,7 +63,7 @@ func _physics_process(delta):
 		else: # si pas de direction du stick, on prends l'angle du personnage
 			roll_direction = _mesh.rotation.y
 		rolling = true
-		
+	
 	if rolling: # la roulade
 		roll_time -= delta
 		_mesh.rotation.x = roll_time * (1/0.1) # pour faire spin le perso, c'est pepega

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://ciodesusejlxu"]
+[gd_scene load_steps=15 format=3 uid="uid://ciodesusejlxu"]
 
 [ext_resource type="Shader" path="res://blur.gdshader" id="1_ea7ox"]
 [ext_resource type="Script" path="res://Scripts/pause_menu.gd" id="2_ndnwk"]
@@ -14,11 +14,17 @@ shadow_color = Color(0, 0, 0, 0.313726)
 shadow_offset = Vector2(4, 2)
 
 [sub_resource type="InputEventAction" id="InputEventAction_7ore2"]
-action = &"ui.cancel"
+action = &"ui_cancel"
 pressed = true
 
 [sub_resource type="Shortcut" id="Shortcut_7rcaw"]
 events = [SubResource("InputEventAction_7ore2")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_3frjx"]
+action = &"ui_cancel"
+
+[sub_resource type="Shortcut" id="Shortcut_1q8nb"]
+events = [SubResource("InputEventAction_3frjx")]
 
 [sub_resource type="Animation" id="Animation_yf78o"]
 resource_name = "Pause"
@@ -300,7 +306,7 @@ _data = {
 "openOptions": SubResource("Animation_y15dl")
 }
 
-[node name="ColorRect" type="ColorRect"]
+[node name="Menu" type="ColorRect"]
 process_mode = 3
 material = SubResource("ShaderMaterial_h6i4h")
 anchors_preset = 15
@@ -326,33 +332,33 @@ visible = false
 custom_minimum_size = Vector2(512, 354)
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="OptionCenterContainer/OptionMenu"]
+[node name="Margin" type="MarginContainer" parent="OptionCenterContainer/OptionMenu"]
 layout_mode = 2
 theme_override_constants/margin_left = 25
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 25
 theme_override_constants/margin_bottom = 25
 
-[node name="VBoxContainer" type="VBoxContainer" parent="OptionCenterContainer/OptionMenu/MarginContainer"]
+[node name="menu" type="VBoxContainer" parent="OptionCenterContainer/OptionMenu/Margin"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="OptionCenterContainer/OptionMenu/MarginContainer/VBoxContainer"]
+[node name="Titre" type="Label" parent="OptionCenterContainer/OptionMenu/Margin/menu"]
 layout_mode = 2
 size_flags_vertical = 6
 text = "Options"
 label_settings = SubResource("LabelSettings_6kunw")
 horizontal_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="OptionCenterContainer/OptionMenu/MarginContainer/VBoxContainer"]
+[node name="Separator" type="HSeparator" parent="OptionCenterContainer/OptionMenu/Margin/menu"]
 custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
 size_flags_stretch_ratio = 0.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="OptionCenterContainer/OptionMenu/MarginContainer/VBoxContainer"]
+[node name="Options Part1" type="HBoxContainer" parent="OptionCenterContainer/OptionMenu/Margin/menu"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Resolution" type="OptionButton" parent="OptionCenterContainer/OptionMenu/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="ScreenRatio" type="OptionButton" parent="OptionCenterContainer/OptionMenu/Margin/menu/Options Part1"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -365,15 +371,15 @@ popup/item_1/id = 1
 popup/item_2/text = "Windowed"
 popup/item_2/id = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="OptionCenterContainer/OptionMenu/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="MouseSens" type="VBoxContainer" parent="OptionCenterContainer/OptionMenu/Margin/menu/Options Part1"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="OptionCenterContainer/OptionMenu/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="Text" type="HBoxContainer" parent="OptionCenterContainer/OptionMenu/Margin/menu/Options Part1/MouseSens"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="OptionCenterContainer/OptionMenu/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+[node name="Mouse Sens" type="Label" parent="OptionCenterContainer/OptionMenu/Margin/menu/Options Part1/MouseSens/Text"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
@@ -381,14 +387,14 @@ text = "Mouse Sensitivity : "
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Sens" type="Label" parent="OptionCenterContainer/OptionMenu/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+[node name="Value" type="Label" parent="OptionCenterContainer/OptionMenu/Margin/menu/Options Part1/MouseSens/Text"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HSlider" type="HSlider" parent="OptionCenterContainer/OptionMenu/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="Mouse Slider" type="HSlider" parent="OptionCenterContainer/OptionMenu/Margin/menu/Options Part1/MouseSens"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
@@ -397,30 +403,26 @@ max_value = 0.5
 step = 0.01
 value = 0.15
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="OptionCenterContainer/OptionMenu/MarginContainer/VBoxContainer"]
+[node name="Options Part2" type="HBoxContainer" parent="OptionCenterContainer/OptionMenu/Margin/menu"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="OptionCenterContainer/OptionMenu/MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="Vsync" type="VBoxContainer" parent="OptionCenterContainer/OptionMenu/Margin/menu/Options Part2"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="OptionCenterContainer/OptionMenu/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+[node name="Vsync" type="Label" parent="OptionCenterContainer/OptionMenu/Margin/menu/Options Part2/Vsync"]
 layout_mode = 2
 size_flags_vertical = 6
-text = "FOV"
+text = "Vsync"
 
-[node name="HSlider" type="HSlider" parent="OptionCenterContainer/OptionMenu/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+[node name="VsyncBox" type="CheckBox" parent="OptionCenterContainer/OptionMenu/Margin/menu/Options Part2/Vsync"]
 layout_mode = 2
-size_flags_vertical = 2
-min_value = 30.0
-max_value = 125.0
-value = 75.0
+button_pressed = true
 
-[node name="BackButton" type="Button" parent="OptionCenterContainer/OptionMenu/MarginContainer/VBoxContainer"]
+[node name="BackButton" type="Button" parent="OptionCenterContainer/OptionMenu/Margin/menu"]
 layout_mode = 2
 size_flags_vertical = 3
-action_mode = 0
 shortcut = SubResource("Shortcut_7rcaw")
 text = "Back"
 
@@ -437,46 +439,44 @@ grow_vertical = 2
 custom_minimum_size = Vector2(512, 256)
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PauseMenu"]
+[node name="PauseMargin" type="MarginContainer" parent="CenterContainer/PauseMenu"]
 layout_mode = 2
 theme_override_constants/margin_left = 25
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 25
 theme_override_constants/margin_bottom = 25
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PauseMenu/MarginContainer"]
+[node name="Menu" type="VBoxContainer" parent="CenterContainer/PauseMenu/PauseMargin"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="CenterContainer/PauseMenu/MarginContainer/VBoxContainer"]
+[node name="Titre" type="Label" parent="CenterContainer/PauseMenu/PauseMargin/Menu"]
 layout_mode = 2
 size_flags_vertical = 6
 text = "Pause Menu"
 label_settings = SubResource("LabelSettings_6kunw")
 horizontal_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="CenterContainer/PauseMenu/MarginContainer/VBoxContainer"]
+[node name="Separator" type="HSeparator" parent="CenterContainer/PauseMenu/PauseMargin/Menu"]
 custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
 size_flags_stretch_ratio = 0.0
 
-[node name="ResumeButton" type="Button" parent="CenterContainer/PauseMenu/MarginContainer/VBoxContainer"]
+[node name="ResumeButton" type="Button" parent="CenterContainer/PauseMenu/PauseMargin/Menu"]
 layout_mode = 2
 size_flags_vertical = 3
-tooltip_text = "Resume Game"
-action_mode = 0
-shortcut = SubResource("Shortcut_7rcaw")
+shortcut = SubResource("Shortcut_1q8nb")
+shortcut_feedback = false
+shortcut_in_tooltip = false
 text = "Resume"
 
-[node name="OptionButton" type="Button" parent="CenterContainer/PauseMenu/MarginContainer/VBoxContainer"]
+[node name="OptionButton" type="Button" parent="CenterContainer/PauseMenu/PauseMargin/Menu"]
 layout_mode = 2
 size_flags_vertical = 3
-action_mode = 0
 text = "Options"
 
-[node name="QuitButton" type="Button" parent="CenterContainer/PauseMenu/MarginContainer/VBoxContainer"]
+[node name="QuitButton" type="Button" parent="CenterContainer/PauseMenu/PauseMargin/Menu"]
 layout_mode = 2
 size_flags_vertical = 3
-action_mode = 0
 text = "Quit"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -485,6 +485,6 @@ libraries = {
 "": SubResource("AnimationLibrary_br1im")
 }
 
-[connection signal="item_selected" from="OptionCenterContainer/OptionMenu/MarginContainer/VBoxContainer/HBoxContainer/Resolution" to="." method="_on_resolution_item_selected"]
-[connection signal="value_changed" from="OptionCenterContainer/OptionMenu/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HSlider" to="." method="_on_h_slider_value_changed"]
-[connection signal="value_changed" from="OptionCenterContainer/OptionMenu/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HSlider" to="." method="_on_fov_slider_value_changed"]
+[connection signal="item_selected" from="OptionCenterContainer/OptionMenu/Margin/menu/Options Part1/ScreenRatio" to="." method="_on_resolution_item_selected"]
+[connection signal="value_changed" from="OptionCenterContainer/OptionMenu/Margin/menu/Options Part1/MouseSens/Mouse Slider" to="." method="_on_h_slider_value_changed"]
+[connection signal="toggled" from="OptionCenterContainer/OptionMenu/Margin/menu/Options Part2/Vsync/VsyncBox" to="." method="_on_vsync_box_toggled"]
