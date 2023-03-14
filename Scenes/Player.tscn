@@ -114,6 +114,7 @@ mesh = ExtResource("2_dgyav")
 
 [node name="FireParticles" type="GPUParticles3D" parent="PlayerMesh"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.485464, 0.482185)
+emitting = false
 amount = 100
 lifetime = 0.6
 visibility_aabb = AABB(-4, -3.15344, -4, 8, 8, 8)
