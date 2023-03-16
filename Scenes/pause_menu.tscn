@@ -418,6 +418,7 @@ text = "Vsync"
 
 [node name="VsyncBox" type="CheckBox" parent="OptionCenterContainer/OptionMenu/Margin/menu/Options Part2/Vsync"]
 layout_mode = 2
+size_flags_vertical = 3
 button_pressed = true
 
 [node name="BackButton" type="Button" parent="OptionCenterContainer/OptionMenu/Margin/menu"]

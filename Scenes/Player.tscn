@@ -1,11 +1,16 @@
-[gd_scene load_steps=16 format=3 uid="uid://bvqd1l4jpnjhi"]
+[gd_scene load_steps=30 format=3 uid="uid://bvqd1l4jpnjhi"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_47u60"]
 [ext_resource type="ArrayMesh" uid="uid://w1wth4pacr6o" path="res://Models/Player/sus.obj" id="2_dgyav"]
 [ext_resource type="Texture2D" uid="uid://ba8s8or0rhpq6" path="res://Models/Player/sus.png" id="2_x6wcj"]
 [ext_resource type="Script" path="res://Scripts/RotationCam.gd" id="3_aid3c"]
 [ext_resource type="PackedScene" uid="uid://ciodesusejlxu" path="res://Scenes/pause_menu.tscn" id="4_edruu"]
+[ext_resource type="ArrayMesh" uid="uid://dkbfr36f44wq2" path="res://Models/suskoh.obj" id="5_a0c5m"]
+[ext_resource type="AudioStream" uid="uid://deegpi4cwghbc" path="res://Sounds/Musics/spin.mp3" id="5_yb430"]
+[ext_resource type="Script" path="res://Scenes/SausageSpin.gd" id="5_yd4vk"]
 [ext_resource type="Script" path="res://Scenes/FPS.gd" id="6_do2yk"]
+[ext_resource type="AudioStream" uid="uid://2s02ul5dppai" path="res://Sounds/Musics/test_song.mp3" id="8_so307"]
+[ext_resource type="ArrayMesh" uid="uid://2u6ibi66ast8" path="res://Models/Player/knife.obj" id="9_0ycte"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ny3e2"]
 radius = 0.6
@@ -50,6 +55,40 @@ albedo_color = Color(1, 0.34902, 0, 1)
 material = SubResource("StandardMaterial3D_yhn10")
 size = Vector3(0.25, 0.25, 0.25)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7qnoq"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2aw14"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_baia5"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fmuqh"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_upyjq"]
+transparency = 1
+albedo_color = Color(0.588235, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tqjwj"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_3e8je"]
+radius = 0.077
+height = 0.8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g1wdy"]
+albedo_color = Color(0.490196, 0.305882, 0.176471, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ca5mu"]
+size = Vector3(0.204559, 0.980308, 0.146586)
+
 [node name="CharacterBody3D" type="CharacterBody3D"]
 process_mode = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
@@ -62,7 +101,7 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 1121.0
+offset_left = 1117.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -124,6 +163,51 @@ draw_pass_1 = SubResource("BoxMesh_ha2vl")
 draw_pass_2 = null
 draw_pass_3 = null
 draw_pass_4 = null
+
+[node name="SausageNode" type="Node3D" parent="PlayerMesh"]
+script = ExtResource("5_yd4vk")
+
+[node name="HandMesh" type="MeshInstance3D" parent="PlayerMesh/SausageNode"]
+transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, -1.15663, -0.331465, 1.02376)
+visible = false
+mesh = ExtResource("5_a0c5m")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_7qnoq")
+surface_material_override/1 = SubResource("StandardMaterial3D_2aw14")
+surface_material_override/2 = SubResource("StandardMaterial3D_baia5")
+surface_material_override/3 = SubResource("StandardMaterial3D_fmuqh")
+surface_material_override/4 = SubResource("StandardMaterial3D_upyjq")
+surface_material_override/5 = SubResource("StandardMaterial3D_tqjwj")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="PlayerMesh/SausageNode"]
+stream = ExtResource("5_yb430")
+volume_db = -25.0
+
+[node name="SausageRotationPoint" type="Node3D" parent="PlayerMesh/SausageNode"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.727, -0.15, -0.894)
+
+[node name="SausageMesh" type="MeshInstance3D" parent="PlayerMesh/SausageNode/SausageRotationPoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.253222, 0)
+visible = false
+mesh = SubResource("CapsuleMesh_3e8je")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_g1wdy")
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="PlayerMesh/SausageNode"]
+stream = ExtResource("8_so307")
+volume_db = -24.0
+
+[node name="AttackCAC" type="Node3D" parent="PlayerMesh"]
+transform = Transform3D(-1, -3.82137e-15, -8.74228e-08, -8.74228e-08, 4.37114e-08, 1, 0, 1, -4.37114e-08, 0, 0, -1.514)
+visible = false
+
+[node name="KnifeMesh" type="MeshInstance3D" parent="PlayerMesh/AttackCAC"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+mesh = ExtResource("9_0ycte")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerMesh/AttackCAC"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0819035, 0, -0.122986)
+shape = SubResource("BoxShape3D_ca5mu")
 
 [node name="CameraNode" type="Node3D" parent="."]
 

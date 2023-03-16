@@ -17,10 +17,6 @@ config/features=PackedStringArray("4.0", "Forward Plus")
 config/icon="res://icon.svg"
 config/windows_native_icon="res://icone.ico"
 
-[display]
-
-window/vsync/vsync_mode=0
-
 [dotnet]
 
 project/assembly_name="DamogusWillNeverCome"
@@ -87,6 +83,12 @@ look_up={
 look_down={
 "deadzone": 0.5,
 "events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":3,"axis_value":1.0,"script":null)
+]
+}
+attack={
+"deadzone": 0.5,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":1,"position":Vector2(115, 21),"global_position":Vector2(119, 64),"factor":1.0,"button_index":1,"pressed":true,"double_click":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":2,"pressure":0.0,"pressed":true,"script":null)
 ]
 }
 

@@ -55,4 +55,7 @@ func _on_fov_slider_value_changed(value): # pour changer le fov
 
 
 func _on_vsync_box_toggled(button_pressed):
-	pass
+	if button_pressed:
+		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED)
+	else :
+		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
