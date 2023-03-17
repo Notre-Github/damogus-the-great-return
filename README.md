@@ -1,4 +1,4 @@
-# evilge
+# Galactic Wanderer
 
 **Objectif principal**
     - Fin des temps, vous le savez et vous tentez de résoudre ce problème
