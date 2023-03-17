@@ -157,7 +157,6 @@ script = ExtResource("2_u6pw3")
 environment = SubResource("Environment_0va2h")
 
 [node name="Player" parent="." instance=ExtResource("1_cgk4e")]
-collision_layer = 2
 
 [node name="ComodeDuKoh" type="RigidBody3D" parent="."]
 transform = Transform3D(0.979938, 0, 1.10777, 0, 1.479, 0, -1.10777, 0, 0.979938, -10.4469, 5.39555, -22.7199)
@@ -197,4 +196,5 @@ skeleton = NodePath("../GroundCollision")
 surface_material_override/0 = SubResource("StandardMaterial3D_7cydo")
 
 [node name="enemy" parent="." instance=ExtResource("7_xp0p1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.27426, 0, -16.4043)
+process_mode = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.5276, 23.9835, -6.48305)

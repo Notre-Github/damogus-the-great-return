@@ -1,8 +1,7 @@
-[gd_scene load_steps=30 format=3 uid="uid://bvqd1l4jpnjhi"]
+[gd_scene load_steps=28 format=3 uid="uid://bvqd1l4jpnjhi"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_47u60"]
-[ext_resource type="ArrayMesh" uid="uid://w1wth4pacr6o" path="res://Models/Player/sus.obj" id="2_dgyav"]
-[ext_resource type="Texture2D" uid="uid://ba8s8or0rhpq6" path="res://Models/Player/sus.png" id="2_x6wcj"]
+[ext_resource type="ArrayMesh" uid="uid://cbh0yi2iaxreg" path="res://Models/Player/Astronaut.obj" id="3_0sb2u"]
 [ext_resource type="Script" path="res://Scripts/RotationCam.gd" id="3_aid3c"]
 [ext_resource type="PackedScene" uid="uid://ciodesusejlxu" path="res://Scenes/pause_menu.tscn" id="4_edruu"]
 [ext_resource type="ArrayMesh" uid="uid://dkbfr36f44wq2" path="res://Models/suskoh.obj" id="5_a0c5m"]
@@ -15,9 +14,6 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ny3e2"]
 radius = 0.6
 height = 2.2
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3vmp1"]
-albedo_texture = ExtResource("2_x6wcj")
 
 [sub_resource type="Gradient" id="Gradient_7fffd"]
 colors = PackedColorArray(1, 0, 0, 1, 1, 1, 0, 0)
@@ -89,9 +85,10 @@ albedo_color = Color(0.490196, 0.305882, 0.176471, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_ca5mu"]
 size = Vector3(0.204559, 0.980308, 0.146586)
 
-[node name="CharacterBody3D" type="CharacterBody3D"]
+[node name="CharacterBody3D" type="CharacterBody3D" groups=["PlayerAttack"]]
 process_mode = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+collision_layer = 2
 script = ExtResource("1_47u60")
 
 [node name="Control" type="Control" parent="."]
@@ -148,8 +145,8 @@ shape = SubResource("CapsuleShape3D_ny3e2")
 
 [node name="PlayerMesh" type="MeshInstance3D" parent="."]
 unique_name_in_owner = true
-material_override = SubResource("StandardMaterial3D_3vmp1")
-mesh = ExtResource("2_dgyav")
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.097, 0)
+mesh = ExtResource("3_0sb2u")
 
 [node name="FireParticles" type="GPUParticles3D" parent="PlayerMesh"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.485464, 0.482185)
@@ -197,16 +194,16 @@ surface_material_override/0 = SubResource("StandardMaterial3D_g1wdy")
 stream = ExtResource("8_so307")
 volume_db = -24.0
 
-[node name="AttackCAC" type="Node3D" parent="PlayerMesh"]
+[node name="AttackCAC" type="Area3D" parent="PlayerMesh" groups=["PlayerAttack"]]
 transform = Transform3D(-1, -3.82137e-15, -8.74228e-08, -8.74228e-08, 4.37114e-08, 1, 0, 1, -4.37114e-08, 0, 0, -1.514)
 visible = false
 
 [node name="KnifeMesh" type="MeshInstance3D" parent="PlayerMesh/AttackCAC"]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+transform = Transform3D(0.5, 0, -5.55375e-29, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 mesh = ExtResource("9_0ycte")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerMesh/AttackCAC"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0819035, 0, -0.122986)
+transform = Transform3D(1, 0, -1.11075e-28, 0, 1, 0, 0, 0, 1, 0.0819035, 0, -0.122986)
 shape = SubResource("BoxShape3D_ca5mu")
 
 [node name="CameraNode" type="Node3D" parent="."]

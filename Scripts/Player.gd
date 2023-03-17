@@ -11,7 +11,7 @@ var roll_direction = 0
 var is_attacking = false
 var attackDamage = 1
 var attackTime = 0.35
-@onready var _knife_mesh: Node3D = $PlayerMesh/AttackCAC
+@onready var _knife_mesh: Area3D = $PlayerMesh/AttackCAC
 
 var jetpack_fuel = 7
 var jetpack_enable = false
@@ -35,6 +35,7 @@ func _physics_process(delta):
 		attackTime = 0.35
 
 	_fireParticles.emitting = false
+
 	if not is_on_floor():
 		velocity.y -= gravity * delta # gravité appliquée
 	
@@ -96,4 +97,4 @@ func _process(delta):
 	move_and_slide() # deprecated : pour le jitter (non kakoh on est pas en pvp pot)
 	_spring_arm.position = Vector3(position.x, position.y + 4, position.z) #pour que la cam se déplace avec le joueur (je sais pas pourquoi faut faire ça)
 	if velocity.x != 0 or velocity.z != 0 : # si mouvement horizontale, tourner le personnage
-		_mesh.rotation.y = lerp_angle(_mesh.rotation.y, atan2(-velocity.x, -velocity.z), 13 * delta)
+		_mesh.rotation.y = lerp_angle(_mesh.rotation.y, atan2(velocity.x, velocity.z), 13 * delta)
