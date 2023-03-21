@@ -145,11 +145,11 @@ shape = SubResource("CapsuleShape3D_ny3e2")
 
 [node name="PlayerMesh" type="MeshInstance3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.097, 0)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -1.09716, 0)
 mesh = ExtResource("3_0sb2u")
 
 [node name="FireParticles" type="GPUParticles3D" parent="PlayerMesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.485464, 0.482185)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.42801, -0.881492)
 emitting = false
 amount = 100
 lifetime = 0.6
@@ -162,6 +162,7 @@ draw_pass_3 = null
 draw_pass_4 = null
 
 [node name="SausageNode" type="Node3D" parent="PlayerMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.41473, 0)
 script = ExtResource("5_yd4vk")
 
 [node name="HandMesh" type="MeshInstance3D" parent="PlayerMesh/SausageNode"]

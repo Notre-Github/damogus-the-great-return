@@ -2,7 +2,7 @@ extends Node3D
 
 var flexing = false
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if Input.is_action_just_pressed("ui_filedialog_show_hidden"):
 		flexing = !flexing
 		emote(flexing)

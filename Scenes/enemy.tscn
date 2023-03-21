@@ -9,6 +9,7 @@
 script = ExtResource("1_6vwo4")
 
 [node name="Area3D" type="Area3D" parent="."]
+disable_mode = 2
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
